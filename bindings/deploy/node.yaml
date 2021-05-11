@@ -11,7 +11,7 @@ spec:
   - protocol: TCP
     port: 80
     targetPort: 3000
-  type: LoadBalancer
+  type: NodePort
 
 ---
 apiVersion: apps/v1
@@ -21,7 +21,6 @@ metadata:
   labels:
     app: bindingsnodeapp
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: bindingsnodeapp
@@ -36,7 +35,7 @@ spec:
     spec:
       containers:
       - name: node
-        image: docker.io/dapriosamples/bindings-nodeapp:latest
+        image: openfunctiondev/bindings-nodeapp:latest
         ports:
         - containerPort: 3000
         imagePullPolicy: Always
